@@ -16,8 +16,6 @@
   "error": "Something went wrong.",
   "retry": "Retry",
   "newConversation": "New conversation",
-  "languageLocked": "Start a new conversation to change the language",
-  "language": "Language",
   "officialSources": "Official sources",
   "retrievedOn": "retrieved {date}",
   "disclaimer": "General information, not legal advice. Verify with official sources."

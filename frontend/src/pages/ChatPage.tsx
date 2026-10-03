@@ -1,11 +1,11 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { type Message, sendChat } from "../api/chat";
 import MessageBubble from "../components/MessageBubble";
-import { LANGUAGES, type LanguageCode, t } from "../i18n";
+import { type LanguageCode, t } from "../i18n";
 
 interface Props {
   language: LanguageCode;
-  onChangeLanguage: (language: LanguageCode) => void;
+  onNewConversation: () => void;
 }
 
 interface Pending {
@@ -13,15 +13,13 @@ interface Pending {
   history: Message[];
 }
 
-export default function ChatPage({ language, onChangeLanguage }: Props) {
+export default function ChatPage({ language, onNewConversation }: Props) {
   const text = t(language);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState<Pending | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  const languageLocked = messages.length > 0;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -58,6 +56,7 @@ export default function ChatPage({ language, onChangeLanguage }: Props) {
     setMessages([]);
     setFailed(null);
     setInput("");
+    onNewConversation();
   }
 
   return (
@@ -68,19 +67,6 @@ export default function ChatPage({ language, onChangeLanguage }: Props) {
           <p className="muted">{text.tagline}</p>
         </div>
         <div className="header-actions">
-          <select
-            aria-label={text.language}
-            value={language}
-            disabled={languageLocked}
-            title={languageLocked ? text.languageLocked : undefined}
-            onChange={(e) => onChangeLanguage(e.target.value as LanguageCode)}
-          >
-            {LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.flag} {l.name}
-              </option>
-            ))}
-          </select>
           <button className="btn small" onClick={reset} disabled={loading}>
             {text.newConversation}
           </button>
