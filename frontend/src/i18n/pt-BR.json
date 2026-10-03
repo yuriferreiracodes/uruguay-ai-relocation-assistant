@@ -16,8 +16,6 @@
   "error": "Algo deu errado.",
   "retry": "Tentar novamente",
   "newConversation": "Nova conversa",
-  "languageLocked": "Inicie uma nova conversa para mudar o idioma",
-  "language": "Idioma",
   "officialSources": "Fontes oficiais",
   "retrievedOn": "consultado {date}",
   "disclaimer": "Informação geral, não é aconselhamento jurídico. Verifique em fontes oficiais."

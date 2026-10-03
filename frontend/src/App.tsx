@@ -28,7 +28,7 @@ export default function App() {
   }
 
   return language ? (
-    <ChatPage language={language} onChangeLanguage={select} />
+    <ChatPage language={language} onNewConversation={() => setLanguage(null)} />
   ) : (
     <LanguagePage onSelect={select} />
   );
