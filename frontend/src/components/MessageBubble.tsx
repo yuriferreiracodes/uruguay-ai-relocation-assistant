@@ -6,10 +6,17 @@ interface Props {
   text: Translations;
 }
 
+// Turns **bold** markers into <strong> without using innerHTML.
+function renderBold(content: string) {
+  return content
+    .split(/\*\*(.+?)\*\*/gs)
+    .map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : part));
+}
+
 export default function MessageBubble({ message, text }: Props) {
   return (
     <div className={`bubble ${message.role}`}>
-      <p>{message.content}</p>
+      <p>{renderBold(message.content)}</p>
       {message.sources && message.sources.length > 0 && (
         <div className="sources">
           <strong>{text.officialSources}</strong>
