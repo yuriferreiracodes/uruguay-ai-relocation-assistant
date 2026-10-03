@@ -21,6 +21,8 @@ export default function ChatPage({ language, onChangeLanguage }: Props) {
   const [failed, setFailed] = useState<Pending | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  const languageLocked = messages.length > 0;
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading, failed]);
@@ -69,6 +71,8 @@ export default function ChatPage({ language, onChangeLanguage }: Props) {
           <select
             aria-label={text.language}
             value={language}
+            disabled={languageLocked}
+            title={languageLocked ? text.languageLocked : undefined}
             onChange={(e) => onChangeLanguage(e.target.value as LanguageCode)}
           >
             {LANGUAGES.map((l) => (

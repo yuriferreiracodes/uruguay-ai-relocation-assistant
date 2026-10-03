@@ -16,6 +16,7 @@
   "error": "Etwas ist schiefgelaufen.",
   "retry": "Erneut versuchen",
   "newConversation": "Neues Gespräch",
+  "languageLocked": "Starte ein neues Gespräch, um die Sprache zu ändern",
   "language": "Sprache",
   "officialSources": "Offizielle Quellen",
   "retrievedOn": "abgerufen {date}",

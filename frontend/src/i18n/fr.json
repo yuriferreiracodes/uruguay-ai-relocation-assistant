@@ -16,6 +16,7 @@
   "error": "Une erreur s'est produite.",
   "retry": "Réessayer",
   "newConversation": "Nouvelle conversation",
+  "languageLocked": "Commencez une nouvelle conversation pour changer de langue",
   "language": "Langue",
   "officialSources": "Sources officielles",
   "retrievedOn": "consulté le {date}",
