@@ -1,0 +1,23 @@
+{
+  "title": "Guia Uruguai",
+  "tagline": "Seu guia com IA para viver no Uruguai.",
+  "chooseLanguage": "Escolha seu idioma",
+  "greeting": "Olá! O que você gostaria de saber sobre o Uruguai?",
+  "suggested": "Perguntas sugeridas",
+  "chips": [
+    { "label": "Residência", "question": "Como posso me mudar para o Uruguai?" },
+    { "label": "Cidadania", "question": "Posso obter a nacionalidade?" },
+    { "label": "Melhores cidades", "question": "Quais são as melhores cidades para morar?" },
+    { "label": "Custo de vida", "question": "Quanto custa viver lá?" }
+  ],
+  "placeholder": "Digite sua pergunta...",
+  "send": "Enviar",
+  "thinking": "Pensando...",
+  "error": "Algo deu errado.",
+  "retry": "Tentar novamente",
+  "newConversation": "Nova conversa",
+  "language": "Idioma",
+  "officialSources": "Fontes oficiais",
+  "retrievedOn": "consultado {date}",
+  "disclaimer": "Informação geral, não é aconselhamento jurídico. Verifique em fontes oficiais."
+}

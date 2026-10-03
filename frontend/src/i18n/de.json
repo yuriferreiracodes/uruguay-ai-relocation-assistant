@@ -1,0 +1,23 @@
+{
+  "title": "Uruguay-Guide",
+  "tagline": "Dein KI-Guide für das Leben in Uruguay.",
+  "chooseLanguage": "Sprache wählen",
+  "greeting": "Hallo! Was möchtest du über Uruguay wissen?",
+  "suggested": "Vorgeschlagene Fragen",
+  "chips": [
+    { "label": "Aufenthalt", "question": "Wie kann ich nach Uruguay ziehen?" },
+    { "label": "Staatsbürgerschaft", "question": "Kann ich die Staatsangehörigkeit erhalten?" },
+    { "label": "Beste Städte", "question": "Welche Städte eignen sich am besten zum Leben?" },
+    { "label": "Lebenshaltungskosten", "question": "Wie viel kostet das Leben dort?" }
+  ],
+  "placeholder": "Frage eingeben...",
+  "send": "Senden",
+  "thinking": "Denke nach...",
+  "error": "Etwas ist schiefgelaufen.",
+  "retry": "Erneut versuchen",
+  "newConversation": "Neues Gespräch",
+  "language": "Sprache",
+  "officialSources": "Offizielle Quellen",
+  "retrievedOn": "abgerufen {date}",
+  "disclaimer": "Allgemeine Informationen, keine Rechtsberatung. Bitte bei offiziellen Quellen prüfen."
+}

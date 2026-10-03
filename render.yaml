@@ -1,0 +1,16 @@
+# Optional Render blueprint. The app itself is plain Docker and runs anywhere (Railway, Fly, ...).
+services:
+  - type: web
+    name: uruguay-guide
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      - key: TRUST_PROXY_HEADERS
+        value: "true"
