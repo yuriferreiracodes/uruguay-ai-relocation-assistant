@@ -1,34 +1,25 @@
 import { useState } from "react";
-import { type LanguageCode, isLanguageCode } from "./i18n";
+import type { LanguageCode } from "./i18n";
 import ChatPage from "./pages/ChatPage";
 import LanguagePage from "./pages/LanguagePage";
-
-const STORAGE_KEY = "uruguay-guide";
-
-function loadLanguage(): LanguageCode | null {
-  try {
-    const parsed: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null");
-    const language = (parsed as { language?: unknown } | null)?.language;
-    return isLanguageCode(language) ? language : null;
-  } catch {
-    return null;
-  }
-}
+import { clearConversation, load, saveLanguage } from "./storage";
 
 export default function App() {
-  const [language, setLanguage] = useState<LanguageCode | null>(loadLanguage);
+  const [language, setLanguage] = useState<LanguageCode | null>(() => load().language);
 
   function select(next: LanguageCode) {
     setLanguage(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ language: next }));
-    } catch {
-      // storage unavailable (private mode): keep the choice in memory only
-    }
+    saveLanguage(next);
+  }
+
+  // Starting over also drops the stored conversation, so a reload cannot bring it back.
+  function newConversation() {
+    clearConversation();
+    setLanguage(null);
   }
 
   return language ? (
-    <ChatPage language={language} onNewConversation={() => setLanguage(null)} />
+    <ChatPage language={language} onNewConversation={newConversation} />
   ) : (
     <LanguagePage onSelect={select} />
   );
