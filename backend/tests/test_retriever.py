@@ -1,7 +1,11 @@
+from typing import get_args
+
 import httpx
 
 from app.config import get_settings
 from app.knowledge.retriever import Retriever, _is_allowed  # pyright: ignore[reportPrivateUsage]
+from app.knowledge.sources import OFFICIAL_CATEGORIES
+from app.schemas.chat import Category
 
 
 def make(handler: httpx.MockTransport) -> Retriever:
@@ -17,12 +21,24 @@ async def test_official_category_retrieves_content_and_sources() -> None:
     assert all(_is_allowed(s.url) for s in ctx.sources)
 
 
-async def test_non_official_category_skips_retrieval() -> None:
+async def test_non_official_category_returns_links_without_fetching() -> None:
     def boom(req: httpx.Request) -> httpx.Response:
         raise AssertionError("must not fetch")
 
     ctx = await make(httpx.MockTransport(boom)).retrieve("culture")
-    assert ctx.text is None and ctx.sources == []
+    assert ctx.text is None
+    assert ctx.sources and all(s.retrieved_at is None for s in ctx.sources)
+
+
+async def test_every_in_scope_category_has_sources() -> None:
+    def boom(req: httpx.Request) -> httpx.Response:
+        raise AssertionError("must not fetch")
+
+    r = make(httpx.MockTransport(boom))
+    for category in get_args(Category):
+        if category in OFFICIAL_CATEGORIES or category == "out_of_scope":
+            continue
+        assert (await r.retrieve(category)).sources, category
 
 
 async def test_retrieval_failure_still_returns_links() -> None:

@@ -2,6 +2,7 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 import { type Message, sendChat } from "../api/chat";
 import MessageBubble from "../components/MessageBubble";
 import { type LanguageCode, t } from "../i18n";
+import { load, saveMessages } from "../storage";
 
 interface Props {
   language: LanguageCode;
@@ -15,7 +16,7 @@ interface Pending {
 
 export default function ChatPage({ language, onNewConversation }: Props) {
   const text = t(language);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => load().messages);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState<Pending | null>(null);
@@ -24,6 +25,10 @@ export default function ChatPage({ language, onNewConversation }: Props) {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading, failed]);
+
+  useEffect(() => {
+    saveMessages(messages);
+  }, [messages]);
 
   async function run(pending: Pending) {
     setLoading(true);
@@ -87,9 +92,11 @@ export default function ChatPage({ language, onNewConversation }: Props) {
       )}
 
       <section className="messages" aria-live="polite">
-        <div className="bubble assistant">
-          <p>{text.greeting}</p>
-        </div>
+        {messages.length === 0 && (
+          <div className="bubble assistant">
+            <p>{text.greeting}</p>
+          </div>
+        )}
         {messages.map((m, i) => (
           <MessageBubble key={i} message={m} text={text} />
         ))}

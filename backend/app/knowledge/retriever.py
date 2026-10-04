@@ -44,11 +44,13 @@ class Retriever:
         self._cache: dict[str, tuple[float, str, str]] = {}
 
     async def retrieve(self, category: str) -> RetrievedContext:
-        if category not in OFFICIAL_CATEGORIES:
-            return RetrievedContext()
         selected = sources_for(category)
         if not selected:
             return RetrievedContext()
+        if category not in OFFICIAL_CATEGORIES:
+            # Reference links only: these answers are not grounded in fetched pages, so
+            # there is nothing to retrieve and no retrieval date to report.
+            return RetrievedContext(sources=[Source(title=s.title, url=s.url) for s in selected])
 
         results = await asyncio.gather(
             *(self._fetch(s.url) for s in selected), return_exceptions=True
