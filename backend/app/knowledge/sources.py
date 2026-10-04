@@ -56,8 +56,74 @@ SOURCES: tuple[OfficialSource, ...] = (
         "https://www.impo.com.uy",
         frozenset({"taxes", "residency", "nationality", "citizenship"}),
     ),
+    OfficialSource(
+        "Dirección General Impositiva (DGI)",
+        "https://www.gub.uy/direccion-general-impositiva",
+        frozenset({"taxes", "employment"}),
+    ),
+    OfficialSource(
+        "Instituto Nacional de Estadística (INE)",
+        "https://www.gub.uy/instituto-nacional-estadistica",
+        frozenset({"cost_of_living", "cities", "housing"}),
+    ),
+    OfficialSource(
+        "Ministerio de Economía y Finanzas",
+        "https://www.gub.uy/ministerio-economia-finanzas",
+        frozenset({"banking", "cost_of_living", "taxes"}),
+    ),
+    OfficialSource(
+        "Ministerio de Salud Pública",
+        "https://www.gub.uy/ministerio-salud-publica",
+        frozenset({"healthcare"}),
+    ),
+    OfficialSource(
+        "Banco de Previsión Social (BPS)",
+        "https://www.bps.gub.uy",
+        frozenset({"healthcare", "employment"}),
+    ),
+    OfficialSource(
+        "Ministerio de Educación y Cultura",
+        "https://www.gub.uy/ministerio-educacion-cultura",
+        frozenset({"education", "culture"}),
+    ),
+    OfficialSource(
+        "Ministerio de Trabajo y Seguridad Social",
+        "https://www.gub.uy/ministerio-trabajo-seguridad-social",
+        frozenset({"employment"}),
+    ),
+    OfficialSource(
+        "Ministerio de Vivienda y Ordenamiento Territorial",
+        "https://www.gub.uy/ministerio-vivienda-ordenamiento-territorial",
+        frozenset({"housing"}),
+    ),
+    OfficialSource(
+        "Ministerio de Transporte y Obras Públicas",
+        "https://www.gub.uy/ministerio-transporte-obras-publicas",
+        frozenset({"transport"}),
+    ),
+    OfficialSource(
+        "Ministerio de Turismo",
+        "https://www.gub.uy/ministerio-turismo",
+        frozenset({"culture", "cities"}),
+    ),
+    OfficialSource(
+        "Uruguay XXI",
+        "https://www.uruguayxxi.gub.uy",
+        frozenset({"general_uruguay", "cost_of_living", "banking", "employment"}),
+    ),
+    OfficialSource(
+        "Portal del Estado uruguayo (gub.uy)",
+        "https://www.gub.uy",
+        frozenset({"general_uruguay"}),
+    ),
 )
+
+# Shown when a category has no dedicated source, so every in-scope answer still cites something.
+FALLBACK_CATEGORY = "general_uruguay"
 
 
 def sources_for(category: str, limit: int = 3) -> list[OfficialSource]:
-    return [s for s in SOURCES if category in s.categories][:limit]
+    matches = [s for s in SOURCES if category in s.categories]
+    if not matches:
+        matches = [s for s in SOURCES if FALLBACK_CATEGORY in s.categories]
+    return matches[:limit]
