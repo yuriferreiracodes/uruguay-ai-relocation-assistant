@@ -100,7 +100,16 @@ export default function ChatPage({ language, onNewConversation }: Props) {
         {messages.map((m, i) => (
           <MessageBubble key={i} message={m} text={text} />
         ))}
-        {loading && <div className="bubble assistant loading">{text.thinking}</div>}
+        {loading && (
+          <div className="bubble assistant loading">
+            {text.thinking}
+            <span className="dots" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </div>
+        )}
         {failed && (
           <div className="error" role="alert">
             {text.error}{" "}
