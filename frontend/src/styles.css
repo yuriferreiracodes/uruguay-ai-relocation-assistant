@@ -67,7 +67,7 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
 .chip { background: var(--blue-soft); border-color: transparent; color: var(--blue); }
 
 .messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; padding: 1rem 0; }
-.bubble { animation: fade-up 0.25s ease both; max-width: 85%; padding: 0.7rem 0.95rem; border-radius: 16px; line-height: 1.45; }
+.bubble { scroll-margin-top: 0.75rem; animation: fade-up 0.25s ease both; max-width: 85%; padding: 0.7rem 0.95rem; border-radius: 16px; line-height: 1.45; }
 .bubble p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .bubble.assistant { background: #f1efe9; align-self: flex-start; border-bottom-left-radius: 4px; }
 .bubble.user { background: var(--blue); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
