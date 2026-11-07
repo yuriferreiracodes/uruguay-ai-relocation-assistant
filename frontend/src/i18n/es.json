@@ -18,5 +18,6 @@
   "newConversation": "Nueva conversación",
   "officialSources": "Fuentes oficiales",
   "retrievedOn": "consultado {date}",
-  "disclaimer": "Información general, no asesoramiento legal. Verifica en fuentes oficiales."
+  "disclaimerLead": "Información general, no asesoramiento legal.",
+  "disclaimer": "Verifica siempre en fuentes oficiales."
 }
