@@ -34,8 +34,26 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
   flex-direction: column;
   animation: fade-up 0.4s ease both;
 }
+/* Desktop: the card floats with breathing room above and below (scales with the window
+   height, never under 2rem), roomier inner padding, and a wider chat for long answers.
+   Phones (< 760px) keep the full-screen layout untouched. */
 @media (min-width: 760px) {
-  .card { min-height: auto; height: 92dvh; margin-top: 4dvh; border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); }
+  .card {
+    --gap-y: clamp(2rem, 6dvh, 4.5rem);
+    min-height: auto;
+    height: calc(100dvh - 2 * var(--gap-y));
+    margin: var(--gap-y) auto;
+    padding: 1.75rem 2rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+  }
+  .chat-page { max-width: 920px; }
+  /* Keep answer lines at a comfortable reading length on the wider card. */
+  .chat-page .bubble { max-width: 80%; }
+  /* On the wide card a thin strip looks squashed: give the note more height. */
+  .chat-page .disclaimer { margin-top: 0.85rem; padding: 0.8rem 1.1rem; font-size: 0.85rem; border-radius: 12px; }
+  .chat-page .disclaimer-icon { width: 1.1rem; height: 1.1rem; margin-top: 0; }
 }
 
 .btn {
