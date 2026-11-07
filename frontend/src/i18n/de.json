@@ -18,5 +18,6 @@
   "newConversation": "Neues Gespräch",
   "officialSources": "Offizielle Quellen",
   "retrievedOn": "abgerufen {date}",
-  "disclaimer": "Allgemeine Informationen, keine Rechtsberatung. Bitte bei offiziellen Quellen prüfen."
+  "disclaimerLead": "Allgemeine Informationen, keine Rechtsberatung.",
+  "disclaimer": "Bitte immer bei offiziellen Quellen prüfen."
 }

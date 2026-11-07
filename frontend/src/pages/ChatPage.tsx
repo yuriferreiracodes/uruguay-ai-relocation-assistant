@@ -143,7 +143,16 @@ export default function ChatPage({ language, onNewConversation }: Props) {
           {text.send}
         </button>
       </form>
-      <p className="disclaimer muted">{text.disclaimer}</p>
+      <p className="disclaimer" role="note">
+        <svg className="disclaimer-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M10 9v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="10" cy="6.2" r="1.1" fill="currentColor" />
+        </svg>
+        <span>
+          <strong>{text.disclaimerLead}</strong> {text.disclaimer}
+        </span>
+      </p>
     </main>
   );
 }
