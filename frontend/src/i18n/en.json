@@ -12,7 +12,7 @@
   ],
   "placeholder": "Type your question...",
   "send": "Send",
-  "thinking": "Thinking...",
+  "thinking": "Thinking",
   "error": "Something went wrong.",
   "retry": "Retry",
   "newConversation": "New conversation",
