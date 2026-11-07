@@ -1,5 +1,6 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { type Message, sendChat } from "../api/chat";
+import Flag from "../components/Flag";
 import MessageBubble from "../components/MessageBubble";
 import { type LanguageCode, t } from "../i18n";
 
@@ -73,7 +74,9 @@ export default function ChatPage({ language, onNewConversation }: Props) {
     <main className="card chat-page">
       <header className="chat-header">
         <div>
-          <h1>{text.title} 🇺🇾</h1>
+          <h1>
+            {text.title} <Flag country="uy" className="flag title-flag" />
+          </h1>
           <p className="muted">{text.tagline}</p>
         </div>
         <div className="header-actions">
