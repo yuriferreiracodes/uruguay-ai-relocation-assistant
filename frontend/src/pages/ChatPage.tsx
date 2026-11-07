@@ -24,12 +24,13 @@ export default function ChatPage({ language, onNewConversation }: Props) {
 
   useEffect(() => {
     const last = messages[messages.length - 1];
-    // When a new answer arrives, show its beginning instead of its end, so the user
-    // doesn't have to scroll up to start reading. The answer bubble is the element
-    // right before the bottom marker.
+    // When a new answer arrives, show the question and the start of the answer instead
+    // of the answer's end, so the user doesn't have to scroll up to start reading.
+    // The answer bubble is right before the bottom marker, and the question right before it.
     const answer = bottomRef.current?.previousElementSibling;
-    if (last?.role === "assistant" && !loading && !failed && answer) {
-      answer.scrollIntoView({ behavior: "smooth", block: "start" });
+    const target = answer?.previousElementSibling ?? answer;
+    if (last?.role === "assistant" && !loading && !failed && target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }
