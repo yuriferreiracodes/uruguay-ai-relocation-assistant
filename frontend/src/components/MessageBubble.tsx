@@ -43,7 +43,10 @@ function formatUsDate(isoDate: string): string {
 export default function MessageBubble({ message, text }: Props) {
   return (
     <div className={`bubble ${message.role}`}>
-      <p>{renderInline(message.content)}</p>
+      {/* Blank lines split the answer into paragraphs, spaced by CSS instead of an empty line. */}
+      {message.content.split(/\n\s*\n/).map((paragraph, i) => (
+        <p key={i}>{renderInline(paragraph.trim())}</p>
+      ))}
       {message.sources && message.sources.length > 0 && (
         <div className="sources">
           <strong>{text.officialSources}</strong>

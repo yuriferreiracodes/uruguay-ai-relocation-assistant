@@ -137,8 +137,23 @@ export default function ChatPage({ language, onNewConversation }: Props) {
           maxLength={2000}
           aria-label={text.placeholder}
         />
-        <button className="btn primary" type="submit" disabled={loading || !input.trim()}>
-          {text.send}
+        <button
+          className="send-btn"
+          type="submit"
+          disabled={loading || !input.trim()}
+          aria-label={text.send}
+          title={text.send}
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path
+              d="M10 16V4M4.5 9.5 10 4l5.5 5.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       </form>
       <p className="disclaimer" role="note">
