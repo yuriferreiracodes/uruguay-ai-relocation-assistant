@@ -1,3 +1,4 @@
+import type { Country } from "../components/Flag";
 import de from "./de.json";
 import en from "./en.json";
 import es from "./es.json";
@@ -8,13 +9,13 @@ import ptBR from "./pt-BR.json";
 export type LanguageCode = "pt-BR" | "es" | "en" | "fr" | "de" | "it";
 export type Translations = typeof en;
 
-export const LANGUAGES: { code: LanguageCode; name: string; flag: string }[] = [
-  { code: "pt-BR", name: "Português", flag: "🇧🇷" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "it", name: "Italiano", flag: "🇮🇹" },
+export const LANGUAGES: { code: LanguageCode; name: string; flag: Country }[] = [
+  { code: "pt-BR", name: "Português", flag: "br" },
+  { code: "es", name: "Español", flag: "es" },
+  { code: "en", name: "English", flag: "gb" },
+  { code: "fr", name: "Français", flag: "fr" },
+  { code: "de", name: "Deutsch", flag: "de" },
+  { code: "it", name: "Italiano", flag: "it" },
 ];
 
 const translations: Record<LanguageCode, Translations> = {
